@@ -53,7 +53,7 @@ class UserAuthServices {
     if (!match) {
       throw new Error('Password does not match');
     }
-    const token = newToken();
+    const token = newToken({ email });
 
     return { token, user: alreadyUser };
   }
