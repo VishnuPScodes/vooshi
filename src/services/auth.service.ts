@@ -1,11 +1,11 @@
 import { UserAuthRepository } from '../repository/auth.repository';
+import { IUserLoginParams, UserParams } from '../types/user.types';
+import { newToken } from '../utils/auth';
 
 class UserAuthServices {
-  constructor() {
-    this._userAuthRepository = new UserAuthRepository();
-  }
+  constructor(private readonly _userAuthRepository: UserAuthRepository) {}
 
-  async getUserData(userId) {
+  async getUserData(userId: string) {
     const user = await this._userAuthRepository.getUserData(userId);
     if (!user) {
       throw new Error('User not found!');
@@ -14,8 +14,8 @@ class UserAuthServices {
     return user;
   }
 
-  async registerUser(params) {
-    const { password, name, email } = params;
+  async registerUser(params: UserParams) {
+    const { password, userName, email, userBio, phoneNumber } = params;
     const alreadyUser = await this._userAuthRepository.isUserAlreadyExists(
       email
     );
@@ -24,13 +24,15 @@ class UserAuthServices {
     }
     const user = await this._userAuthRepository.registerUser({
       password,
-      name,
+      userName,
       email,
+      userBio,
+      phoneNumber,
     });
     if (!user) {
       throw new Error('Not able to create the user');
     }
-    const token = newToken();
+    const token = newToken({ userName, password });
 
     return {
       token,
@@ -38,7 +40,7 @@ class UserAuthServices {
     };
   }
 
-  async userLogin(params) {
+  async userLogin(params: IUserLoginParams) {
     const { password, email } = params;
     const alreadyUser = await this._userAuthRepository.isUserAlreadyExists(
       email

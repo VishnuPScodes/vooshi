@@ -15,10 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  lastName: {
-    type: String,
-    required: true,
-  },
+
   email: {
     type: String,
     required: true,
@@ -28,6 +25,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: Object.values(profileStatus),
   },
+  profilePicture: {
+    type: String,
+  },
+  phoneNumber: {
+    type: String,
+  },
+  userBio: {
+    type: String,
+    required: true,
+  },
 });
 
 export interface IUser extends Document {
@@ -36,6 +43,8 @@ export interface IUser extends Document {
   lastName: string;
   email: string;
   profileStatus: profileStatus;
+  userBio: string;
+  phoneNumber: string;
 }
 
 //hashing to protect the passwords
@@ -54,6 +63,6 @@ userSchema.methods.checkPassword = function (password: any) {
   return bcrypt.compareSync(password, this.password);
 };
 
-const userModel = mongoose.model<IUser>('user', userSchema);
+const UserModel = mongoose.model<IUser>('user', userSchema);
 
-export default userModel;
+export default UserModel;
