@@ -11,7 +11,8 @@ export class UserAuthRepository {
   }
 
   async registerUser(params: UserParams) {
-    const { password, userName, email, userBio, phoneNumber } = params;
+    const { password, userName, email, userBio, phoneNumber, profileStatus } =
+      params;
     console.log('called repos');
 
     const user = await this._model.create({
@@ -20,6 +21,7 @@ export class UserAuthRepository {
       email,
       userBio,
       phoneNumber,
+      profileStatus,
     });
     console.log('called repos2', user);
     return user;

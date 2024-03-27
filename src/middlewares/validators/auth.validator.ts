@@ -18,6 +18,16 @@ const emailValidator: RequestHandler[] = [
     .isEmail(),
 ];
 
+const profileStatusValidator: RequestHandler[] = [
+  check(
+    'profileStatus',
+    'please give your profile status ie public or private '
+  )
+    .notEmpty()
+    .withMessage('profile status should not be empty')
+    .bail(),
+];
+
 const phoneNumberValidator: RequestHandler[] = [
   check('phoneNumber', 'please provide your phone number ')
     .notEmpty()
@@ -31,13 +41,11 @@ const userNameValidator: RequestHandler[] = [
     .withMessage('user name can not be empty'),
 ];
 
-// Define other validators similarly...
-
-// Combine all validators into a single array
 export const registerValidator: RequestHandler[] = [
   ...passwordValidator,
   ...emailValidator,
   ...userNameValidator,
   ...phoneNumberValidator,
+  ...profileStatusValidator,
   ...validateRequest,
 ];

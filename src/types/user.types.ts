@@ -4,6 +4,7 @@ export interface UserParams {
   email: string;
   userBio: string;
   phoneNumber: number;
+  profileStatus: string;
 }
 
 export interface IUserLoginParams {

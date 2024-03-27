@@ -18,7 +18,8 @@ class UserAuthServices {
   async registerUser(params: UserParams) {
     console.log('hti ');
 
-    const { password, userName, email, userBio, phoneNumber } = params;
+    const { password, userName, email, userBio, phoneNumber, profileStatus } =
+      params;
     const alreadyUser = await this._userAuthRepository.isUserAlreadyExists(
       email
     );
@@ -32,6 +33,7 @@ class UserAuthServices {
       email,
       userBio,
       phoneNumber,
+      profileStatus,
     });
     console.log('herere', user);
     if (!user) {
