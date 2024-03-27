@@ -1,6 +1,7 @@
 import { UserAuthRepository } from '../repository/auth.repository';
 import { IUserLoginParams, UserParams } from '../types/user.types';
 import { newToken } from '../utils/auth';
+import { BadRequestError, NotFoundError } from '../utils/response/error';
 
 class UserAuthServices {
   constructor(private readonly _userAuthRepository: UserAuthRepository) {}
@@ -8,7 +9,7 @@ class UserAuthServices {
   async getUserData(userId: string) {
     const user = await this._userAuthRepository.getUserData(userId);
     if (!user) {
-      throw new Error('User not found!');
+      throw new NotFoundError('User not found!');
     }
 
     return user;
@@ -20,7 +21,7 @@ class UserAuthServices {
       email
     );
     if (alreadyUser) {
-      throw new Error('User already exists!');
+      throw new BadRequestError('User already exists!');
     }
     const user = await this._userAuthRepository.registerUser({
       password,
@@ -30,7 +31,7 @@ class UserAuthServices {
       phoneNumber,
     });
     if (!user) {
-      throw new Error('Not able to create the user');
+      throw new BadRequestError('Not able to create the user!');
     }
     const token = newToken({ userName, password });
 
@@ -59,4 +60,4 @@ class UserAuthServices {
   }
 }
 
-export const UserAuthServices_ = new UserAuthServices();
+export const UserAuthServices_ = new UserAuthServices(new UserAuthRepository());

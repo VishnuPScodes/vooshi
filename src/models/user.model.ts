@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  firstName: {
+  userName: {
     type: String,
     required: true,
   },
@@ -39,12 +39,12 @@ const userSchema = new mongoose.Schema({
 
 export interface IUser extends Document {
   password: string;
-  firstName: string;
-  lastName: string;
+  userName: string;
   email: string;
   profileStatus: profileStatus;
   userBio: string;
   phoneNumber: string;
+  checkPassword(password: string): boolean;
 }
 
 //hashing to protect the passwords
