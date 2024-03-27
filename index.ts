@@ -5,6 +5,7 @@ import authRouter from './src/routes/auth.routes';
 import session from 'express-session';
 import passport from './src/configs/google-auth'; // Import the Passport configuration
 import { newToken } from './src/utils/auth';
+import usersRoutes from './src/routes/users.routes';
 
 const app = express();
 app.use(express.json());
@@ -43,6 +44,7 @@ app.get(
 const PORT = process.env.PORT || 4001;
 const mongoUrl = process.env.MONGO_URL as string;
 app.use('/auth', authRouter);
+app.use('/users', usersRoutes);
 
 app.listen(PORT, async () => {
   try {
