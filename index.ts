@@ -15,7 +15,7 @@ app.use(
   session({
     resave: false,
     saveUninitialized: true,
-    secret: 'some scret',
+    secret: 'some secret',
   })
 );
 app.use(passport.initialize());

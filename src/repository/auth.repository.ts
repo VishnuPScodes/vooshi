@@ -19,10 +19,19 @@ export class UserAuthRepository {
       userBio,
       phoneNumber,
       profileStatus,
+      profilePicture,
     } = params;
     const user = this._model.findOneAndUpdate(
       { _id: userId },
-      { password, userName, email, userBio, phoneNumber, profileStatus },
+      {
+        password,
+        userName,
+        email,
+        userBio,
+        phoneNumber,
+        profileStatus,
+        profilePicture,
+      },
       { new: true }
     );
 

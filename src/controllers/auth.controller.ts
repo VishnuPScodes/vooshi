@@ -54,6 +54,7 @@ export const updateUserInformations = async (
   const { password, userName, email, userBio, phoneNumber, profileStatus } =
     req.body;
   const { userId } = req.params;
+  const profilePicture = req.file?.path;
   const user = await UserAuthServices_.editUserInformations({
     userId,
     password,
@@ -62,6 +63,7 @@ export const updateUserInformations = async (
     userBio,
     phoneNumber,
     profileStatus,
+    profilePicture,
   });
 
   res.status(201).send(user);

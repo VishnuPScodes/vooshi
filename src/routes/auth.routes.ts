@@ -11,6 +11,7 @@ import {
   registerValidator,
 } from '../middlewares/validators/auth.validator';
 import { isAuthenticated } from '../middlewares/auth/isAuthenticated';
+import upload from '../middlewares/file-upload';
 
 const authRouter = express.Router();
 
@@ -24,6 +25,7 @@ authRouter.get(
 authRouter.get(
   '/profile/update/:userId',
   isAuthenticated,
+  upload.single('profilePicture'),
   asyncHandler(updateUserInformations)
 );
 

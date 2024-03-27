@@ -28,6 +28,7 @@ class UserAuthServices {
       userBio,
       phoneNumber,
       profileStatus,
+      profilePicture,
     } = params;
     const user = await this._userAuthRepository.editUserInformations({
       userId,
@@ -37,6 +38,7 @@ class UserAuthServices {
       userBio,
       phoneNumber,
       profileStatus,
+      profilePicture,
     });
     if (!user) {
       throw new NotFoundError('User not found!');

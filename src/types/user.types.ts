@@ -20,4 +20,5 @@ export interface IUserEditParams {
   phoneNumber: number;
   profileStatus: string;
   userId: string;
+  profilePicture?: string;
 }
