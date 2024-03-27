@@ -1,12 +1,6 @@
-import { UserAuthRepository } from '../repository/auth.repository';
 import { UsersRepository } from '../repository/users.repository';
-import {
-  IUserEditParams,
-  IUserLoginParams,
-  UserParams,
-} from '../types/user.types';
-import { newToken } from '../utils/auth';
-import { BadRequestError, NotFoundError } from '../utils/response/error';
+
+import { NotFoundError } from '../utils/response/error';
 
 class UsersServices {
   constructor(private readonly _usersRepository: UsersRepository) {}

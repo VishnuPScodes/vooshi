@@ -25,7 +25,6 @@ export const loginUser = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log('rere');
   const { password, email } = req.body;
   const user = await UserAuthServices_.userLogin({
     password,
