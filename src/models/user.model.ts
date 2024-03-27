@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   email: {
     type: String,
     required: true,
@@ -25,6 +24,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: Object.values(profileStatus),
     required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
   profilePicture: {
     type: String,
@@ -43,7 +46,7 @@ export interface IUser extends Document {
   userName: string;
   email: string;
   profileStatus: profileStatus;
-  userBio: string;
+  userBio?: string;
   phoneNumber: string;
   checkPassword(password: string): boolean;
 }
