@@ -24,16 +24,17 @@ const userSchema = new mongoose.Schema({
   profileStatus: {
     type: String,
     enum: Object.values(profileStatus),
+    required: true,
   },
   profilePicture: {
     type: String,
   },
   phoneNumber: {
     type: String,
+    required: true,
   },
   userBio: {
     type: String,
-    required: true,
   },
 });
 
