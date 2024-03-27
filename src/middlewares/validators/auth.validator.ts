@@ -41,6 +41,12 @@ const userNameValidator: RequestHandler[] = [
     .withMessage('user name can not be empty'),
 ];
 
+export const loginValidator: RequestHandler[] = [
+  ...passwordValidator,
+  ...emailValidator,
+  ...validateRequest,
+];
+
 export const registerValidator: RequestHandler[] = [
   ...passwordValidator,
   ...emailValidator,

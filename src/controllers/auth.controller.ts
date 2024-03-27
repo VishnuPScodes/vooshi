@@ -16,6 +16,20 @@ export const registerUser = async (
     phoneNumber,
     profileStatus,
   });
-  console.log('from controller', user);
+
+  res.status(201).send(user);
+};
+
+export const loginUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { password, email } = req.body;
+  const user = await UserAuthServices_.userLogin({
+    password,
+    email,
+  });
+
   res.status(201).send(user);
 };
