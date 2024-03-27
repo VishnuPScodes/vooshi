@@ -22,7 +22,7 @@ authRouter.get(
   isAuthenticated,
   asyncHandler(getUserInformationsById)
 );
-authRouter.get(
+authRouter.patch(
   '/profile/update/:userId',
   isAuthenticated,
   upload.single('profilePicture'),
