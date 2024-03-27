@@ -1,11 +1,30 @@
 import UserModel from '../models/user.model';
-import { UserParams } from '../types/user.types';
+import { IUserEditParams, UserParams } from '../types/user.types';
 
 export class UserAuthRepository {
   private _model = UserModel;
 
   async getUserData(userId: string) {
     const user = this._model.findOne({ _id: userId });
+
+    return user;
+  }
+
+  async editUserInformations(params: IUserEditParams) {
+    const {
+      userId,
+      password,
+      userName,
+      email,
+      userBio,
+      phoneNumber,
+      profileStatus,
+    } = params;
+    const user = this._model.findOneAndUpdate(
+      { _id: userId },
+      { password, userName, email, userBio, phoneNumber, profileStatus },
+      { new: true }
+    );
 
     return user;
   }

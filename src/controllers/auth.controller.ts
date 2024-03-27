@@ -40,9 +40,29 @@ export const getUserInformationsById = async (
   res: Response,
   next: NextFunction
 ) => {
-  console.log('hooola');
   const { userId } = req.params;
   const user = await UserAuthServices_.getUserData(userId);
+
+  res.status(201).send(user);
+};
+
+export const updateUserInformations = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { password, userName, email, userBio, phoneNumber, profileStatus } =
+    req.body;
+  const { userId } = req.params;
+  const user = await UserAuthServices_.editUserInformations({
+    userId,
+    password,
+    userName,
+    email,
+    userBio,
+    phoneNumber,
+    profileStatus,
+  });
 
   res.status(201).send(user);
 };

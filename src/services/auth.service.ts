@@ -1,5 +1,9 @@
 import { UserAuthRepository } from '../repository/auth.repository';
-import { IUserLoginParams, UserParams } from '../types/user.types';
+import {
+  IUserEditParams,
+  IUserLoginParams,
+  UserParams,
+} from '../types/user.types';
 import { newToken } from '../utils/auth';
 import { BadRequestError, NotFoundError } from '../utils/response/error';
 
@@ -8,6 +12,32 @@ class UserAuthServices {
   //getting profile informations
   async getUserData(userId: string) {
     const user = await this._userAuthRepository.getUserData(userId);
+    if (!user) {
+      throw new NotFoundError('User not found!');
+    }
+
+    return user;
+  }
+  //edit user informations
+  async editUserInformations(params: IUserEditParams) {
+    const {
+      userId,
+      password,
+      userName,
+      email,
+      userBio,
+      phoneNumber,
+      profileStatus,
+    } = params;
+    const user = await this._userAuthRepository.editUserInformations({
+      userId,
+      password,
+      userName,
+      email,
+      userBio,
+      phoneNumber,
+      profileStatus,
+    });
     if (!user) {
       throw new NotFoundError('User not found!');
     }

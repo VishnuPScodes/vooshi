@@ -3,6 +3,7 @@ import {
   getUserInformationsById,
   loginUser,
   registerUser,
+  updateUserInformations,
 } from '../controllers/auth.controller';
 import asyncHandler from '../utils/asyncHandler';
 import {
@@ -19,6 +20,11 @@ authRouter.get(
   '/profile/:userId',
   isAuthenticated,
   asyncHandler(getUserInformationsById)
+);
+authRouter.get(
+  '/profile/update/:userId',
+  isAuthenticated,
+  asyncHandler(updateUserInformations)
 );
 
 export default authRouter;
