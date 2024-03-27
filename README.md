@@ -86,8 +86,7 @@ This project is a Node.js application built with TypeScript, designed to provide
   
 ## Usage
 
-- Use the provided API endpoints to register, login, and manage users.
-- Authenticate users using the Google OAuth endpoint.
+- Use the provided API endpoints to register, login, and manage user details.
 - Ensure proper authorization for accessing restricted endpoints.
 - Validate input data according to the specified requirements.
    
