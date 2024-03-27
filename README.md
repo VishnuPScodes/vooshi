@@ -41,13 +41,28 @@ This project is a Node.js application built with TypeScript, designed to provide
 ## API Endpoints
 
 - **GET** `/auth/profile/update/:userId`: Retrieve user profile information.
+    By using the userId , user can get his informations .
+    Only logged in user can access the api
 - **POST** `/auth/register`: Register a new user.
+   User can register them with this api .
+   Using express-validators to make sure the body has -strong password,email,userName,phoneNumber and profileStatus(private or public)
+   Token will be generated and send after registration
 - **POST** `/auth/login`: Log in with existing credentials.
+   express-validator implemented to check body has -strong password and email
 - **PATCH** `/auth/profile/update/:userId`: Update user information (authorized users only).
+   user can edit his details
+   user can upload profile picture
 - **GET** `/users/admin/allUsers?isPrivate=true`: Get all public and private users (admin-only) ,if isPrivate query not added user will get only public users.
+   only admin can access the API
+   admin can get all users ie both privare abd public if the query , isPrivate=true is send
+   if no query is send by default admin will get only the public users - this customization is added.
+   pagination is added
 - **GET** `/users/publicUsers`: Get all public users.
+   pagination added
+   only logged in user can access the API
 - **GET** `/auth/google`: Initiate Google OAuth login and registration.
-
+  social login
+  
 ## Usage
 
 - Use the provided API endpoints to register, login, and manage users.
