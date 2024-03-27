@@ -25,11 +25,24 @@ export const loginUser = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('rere');
   const { password, email } = req.body;
   const user = await UserAuthServices_.userLogin({
     password,
     email,
   });
+
+  res.status(200).send(user);
+};
+
+export const getUserInformationsById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  console.log('hooola');
+  const { userId } = req.params;
+  const user = await UserAuthServices_.getUserData(userId);
 
   res.status(201).send(user);
 };

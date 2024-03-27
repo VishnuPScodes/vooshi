@@ -5,7 +5,7 @@ import { BadRequestError, NotFoundError } from '../utils/response/error';
 
 class UserAuthServices {
   constructor(private readonly _userAuthRepository: UserAuthRepository) {}
-
+  //getting profile informations
   async getUserData(userId: string) {
     const user = await this._userAuthRepository.getUserData(userId);
     if (!user) {
