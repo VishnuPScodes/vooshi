@@ -6,9 +6,19 @@ export const getAllUsers = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { isPrivate } = req.query;
+  const { isPrivate, page, limit } = req.query;
+  const user = await UsersServices_.getUsers({ isPrivate, page, limit });
 
-  const user = await UsersServices_.getUsers({ isPrivate });
+  res.status(201).send(user);
+};
+
+export const getPublicUsers = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { page, limit } = req.query;
+  const user = await UsersServices_.getPublicUsers({ page, limit });
 
   res.status(201).send(user);
 };
