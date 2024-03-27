@@ -48,14 +48,11 @@ class UserAuthServices {
   }
 
   async registerUser(params: UserParams) {
-    console.log('hti ');
-
     const { password, userName, email, userBio, phoneNumber, profileStatus } =
       params;
     const alreadyUser = await this._userAuthRepository.isUserAlreadyExists(
       email
     );
-    console.log('hrere', alreadyUser);
     if (alreadyUser) {
       throw new BadRequestError('User already exists!');
     }
@@ -67,11 +64,10 @@ class UserAuthServices {
       phoneNumber,
       profileStatus,
     });
-    console.log('herere', user);
     if (!user) {
       throw new BadRequestError('Not able to create the user!');
     }
-    const token = newToken({ userName, password });
+    const token = newToken({ user });
 
     return {
       token,

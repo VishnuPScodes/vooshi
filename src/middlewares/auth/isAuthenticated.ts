@@ -37,7 +37,7 @@ export const isAuthenticated = async (
 
     // Verify token
     const decodedToken: any = await verifyToken(token);
-
+    console.log('decoded token', decodedToken);
     // Attach user to request object
     req.user = decodedToken.user;
 
