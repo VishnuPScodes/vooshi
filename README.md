@@ -21,7 +21,7 @@ This project is a Node.js application built with TypeScript, designed to provide
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/VishnuPScodes/vooshi.git
 
 2. Navigate to the project directory:
 
@@ -44,7 +44,7 @@ This project is a Node.js application built with TypeScript, designed to provide
 - **POST** `/auth/register`: Register a new user.
 - **POST** `/auth/login`: Log in with existing credentials.
 - **PATCH** `/auth/profile/update/:userId`: Update user information (authorized users only).
-- **GET** `/users/admin/allUsers?isPrivate=true`: Get all public and private users (admin-only).
+- **GET** `/users/admin/allUsers?isPrivate=true`: Get all public and private users (admin-only) ,if isPrivate query not added user will get only public users.
 - **GET** `/users/publicUsers`: Get all public users.
 - **GET** `/auth/google`: Initiate Google OAuth login and registration.
 
