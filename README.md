@@ -41,8 +41,11 @@ This project is a Node.js application built with TypeScript, designed to provide
 ## API Endpoints
 
 - **GET** `/auth/profile/update/:userId`: Retrieve user profile information.
+  
     By using the userId , user can get his informations .
+  
     Only logged in user can access the api
+  
 - **POST** `/auth/register`: Register a new user.
    User can register them with this api .
    Using express-validators to make sure the body has -strong password,email,userName,phoneNumber and profileStatus(private or public)
